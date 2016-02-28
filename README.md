@@ -122,6 +122,27 @@ public class MergeTestDuplicateKeysPS06 {
 	}
 }
 ```
+##Code improvements to Mergesort
+```
+//Condition A: Cutoff to Insertionsort
+if (hi <= lo + CUTOFF) {
+	insertionSort(dst, lo, hi);
+	return;
+}
+
+//Condition B: Test for already sorted
+if (!less(src[mid + 1], src[mid])) {
+	System.arraycopy(src, lo, dst, lo, hi - lo + 1);
+	return;
+}
+
+//Condition C: Switch recursive arguments
+sort(dst, src, lo, mid);
+sort(dst, src, mid + 1, hi);
+//without recursive switch
+sort(src, dst, lo, mid);
+sort(src, dst, mid + 1, hi);
+```
 ##Code for Tukey Ninther partition and Median-Of-3
 ```
 //Tukey Ninther
